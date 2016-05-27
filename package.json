@@ -1,0 +1,20 @@
+{
+	"name": "RxNodeFS",
+	"version": "0.1.0",
+	"description": "Library",
+	"author": "PhiLho <PhiLho(a)GMX.net>",
+	"license": "Zlib",
+	"private": true,
+	"main": "lib/RxNodeFS.js",
+	"dependencies":
+	{
+		"lodash": "~4.13.0",
+		"rx": "~4.1.0",
+	},
+	"devDependencies":
+	{
+	},
+	"scripts":
+	{
+	}
+}
