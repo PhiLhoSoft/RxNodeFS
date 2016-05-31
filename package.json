@@ -1,7 +1,7 @@
 {
 	"name": "RxNodeFS",
 	"version": "0.2.1",
-	"description": "Library",
+	"description": "Library to wrap Node.js' FS library (filesystem) in RxJS' Observables",
 	"author": "PhiLho <PhiLho(a)GMX.net>",
 	"license": "Zlib",
 	"private": true,
