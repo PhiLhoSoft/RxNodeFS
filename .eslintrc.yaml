@@ -37,7 +37,7 @@ rules:
   # Style #
 
   indent:                       # specify tab or space width for your code (fixable)
-    - 2
+    - 0
     - tab
   no-mixed-spaces-and-tabs: 2   # disallow mixed spaces and tabs for indentation (recommended)
   linebreak-style:              # disallow mixed 'LF' and 'CRLF' as linebreaks

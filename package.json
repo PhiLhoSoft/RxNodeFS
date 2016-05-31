@@ -1,6 +1,6 @@
 {
 	"name": "RxNodeFS",
-	"version": "0.1.0",
+	"version": "0.2.1",
 	"description": "Library",
 	"author": "PhiLho <PhiLho(a)GMX.net>",
 	"license": "Zlib",
@@ -9,7 +9,7 @@
 	"dependencies":
 	{
 		"lodash": "~4.13.0",
-		"rx": "~4.1.0",
+		"rx": "~4.1.0"
 	},
 	"devDependencies":
 	{

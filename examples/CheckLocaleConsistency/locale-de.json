@@ -1,0 +1,122 @@
+{
+	"MESSAGE":
+	{
+		"LOADING": "Laden...",
+		"REQUIRED": "erforderlich",
+		"HTTP_ERROR": "Fehler bei der Verbindung zum Server: ",
+		"WARNING": "Warnung",
+		"ERROR": "Fehler",
+		"UNSAVED_WARNING": "Sie haben ungesicherte Änderungen.",
+		"UNSAVED_WARNING_CONTINUE": "Sie haben ungesicherte Änderungen. Möchtest du fortfahren?"
+	},
+
+	"DIALOG":
+	{
+		"OK": "OK",
+		"CANCEL": "Abbrechen",
+		"CLOSE": "Abschließen",
+		"YES": "Ya",
+		"NO": "Nein",
+		"CONFIRM": "Bestätigen"
+	},
+
+	"HEADER":
+	{
+		"TEMPLATE_LINK": "Template",
+		"ABOUT_LINK": "Über",
+		"HELP": "Hilfe",
+		"LOGOUT" : "Ausloggen",
+		"USERNAME" : "Username"
+	},
+
+	"ABOUT":
+	{
+		"TITLE": "Über",
+		"PRODUCT_NAME": "Produktname",
+		"API_VERSION": "API-Version"
+	},
+
+	"TRANSLATION":
+	{
+		"TO_OTHER_LANGUAGE": "to English",
+		"TO_FRENCH": "en français (not in EN, to get a diff)"
+	},
+
+	"TEMPLATE":
+	{
+		"TITLE": "Template",
+		"TEMPLATE_NAME": "Templatennamen",
+		"UNKNOWN_ID": "(unbekannte Id)",
+		"EMPTY_TEMPLATE": "(vakuum Template)",
+		"SELECT_TEMPLATE": "Wählen Sie eine Template...",
+		"SAVE": "Template sparen",
+		"DELETE": "Template löschen",
+		"EDIT": "Edieren Template",
+		"NODE_CONFIGURATION": "Node Konfiguration",
+		"NOT_MODIFIED": "(nicht modifiziert)",
+		"DELETE_TITLE": "Template löschen",
+		"DELETE_MODIFICATIONS_EXIST": "Ihre Änderungen gehen verloren.",
+		"DELETE_MESSAGE": "Sind Sie sicher, dass Sie \"{{diagramTitle}}\" Template zu entfernen?",
+		"LIST":
+		{
+			"TITLE": "Templates",
+			"HEADER":
+			{
+				"NAME": "Benennung"
+			},
+			"TOOLBAR":
+			{
+				"CREATE": "Erstellen"
+			}
+		},
+		"MESSAGE":
+		{
+			"NAME_TAKEN": "Diese template Namen ist bereits vorhanden",
+			"NAME_INVALID": "Ungültige Templatennamen",
+			"CREATION_ERROR":
+			{
+				"TITLE": "Templatenerstellung Fehler",
+				"MESSAGE": "Scheiterte Template erstellen: "
+			},
+			"GRAPH_LOADING_ERROR":
+			{
+				"TITLE": "Template Graph Ladefehler",
+				"MESSAGE": "Fehlgeschlagen Template Diagramm zu laden: "
+			},
+			"DELETION_ERROR":
+			{
+				"TITLE": "Template löschen Fehler",
+				"MESSAGE": "Fehlgeschlagen Template zu löschen: "
+			},
+			"UPDATE_ERROR":
+			{
+				"TITLE": "[DE] Template Update Error",
+				"MESSAGE": "[DE] Failed to update template: "
+			},
+			"SAVING_ERROR":
+			{
+				"TITLE": "Template speichern Fehler",
+				"MESSAGE": "Fehlgeschlagen Template speichern: "
+			},
+			"SAVING_SUCCESS":
+			{
+				"TITLE": "Template speichern Erfolg",
+				"MESSAGE": "Template erfolgreich gespeichert"
+			}
+		}
+	},
+
+	"UPLOAD":
+	{
+		"INVALID":
+		{
+			"TITLE": "Ungültiger Dateityp",
+			"MESSAGE": "Die Datei muss eine der folgenden Arten sein: "
+		},
+		"TOO_BIG":
+		{
+			"TITLE": "Datei zu groß",
+			"MESSAGE": "Die Datei muss kleiner sein als "
+		}
+	}
+}

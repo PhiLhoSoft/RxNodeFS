@@ -1,0 +1,27 @@
+<div class="panel-content">
+
+	<div ng-controller="TemplateListController as tlc">
+		<pls-side-box box-title="{{'TEMPLATE.LIST.TITLE' | translate}}" content-id="{{tlc.contentId}}">
+			<pls-toolbar role="toolbar">
+				<button id="template-list-create-button" title="{{'TEMPLATE.LIST.TOOLBAR.CREATE' | translate}}"
+					ng-click="tlc.createTemplate()" tabindex="101">
+					<i class="fa fa-plus-square"></i>
+				</button>
+			</pls-toolbar>
+			<div class="main-content">
+				<div ag-grid="tlc.gridOptions" class="ag-fresh flex-ag-grid"
+					aria-labelledby="{{tlc.contentId}}-title" role="grid" tabindex="102" ng-focus="tlc.onFocus()"></div>
+			</div>
+		</pls-side-box>
+	</div>
+
+	<div ng-controller="TemplateInstanceListController as tilc">
+		<pls-side-box box-title="{{'TEMPLATE_INSTANCE.LIST.TITLE' | translate}}" content-id="{{tilc.contentId}}">
+			<div class="main-content">
+				<div ag-grid="tilc.gridOptions" class="ag-fresh flex-ag-grid"
+					aria-labelledby="{{tilc.contentId}}-title" role="grid" tabindex="202" ng-focus="tilc.onFocus()"></div>
+			</div>
+		</pls-side-box>
+	</div>
+
+</div>

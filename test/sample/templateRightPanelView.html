@@ -1,0 +1,58 @@
+<div class="panel-content">
+
+	<div ng-controller="CollectionInformationController as cic">
+		<pls-side-box box-title="{{'COLLECTION_INFORMATION.LIST.TITLE' | translate}} ({{cic.mocName}})" content-id="{{cic.contentId}}">
+
+			<pls-toolbar role="toolbar">
+				<button id="collection-information-create-button" title="{{cic.toolbar.createButtonTooltip}}"
+					ng-click="cic.createCollectionInformation()" ng-disabled="cic.toolbar.createDisabled" tabindex="2101">
+					<i class="fa fa-plus-square"></i>
+				</button>
+				<button id="collection-information-modify-button" title="{{cic.toolbar.modifyButtonTooltip}}"
+					ng-click="cic.modifyCollectionInformation()" ng-disabled="cic.toolbar.modifyDisabled" tabindex="2102">
+					<i class="fa fa-gear"></i>
+				</button>
+				<button id="collection-information-delete-button" title="{{cic.toolbar.deleteButtonTooltip}}"
+					ng-click="cic.deleteCollectionInformation()" ng-disabled="cic.toolbar.deleteDisabled" tabindex="2103">
+					<i class="fa fa-remove"></i>
+				</button>
+			</pls-toolbar>
+
+			<div class="main-content">
+				<div ag-grid="cic.gridOptions" class="ag-fresh flex-ag-grid"
+					aria-labelledby="{{cic.contentId}}-title" role="grid" tabindex="2104" ng-focus="cic.onFocus()"></div>
+			</div>
+
+		</pls-side-box>
+	</div>
+
+	<div ng-controller="MappingController as mc">
+		<pls-side-box box-title="{{'MAPPING.LIST.TITLE' | translate}} ({{mc.moc.name}})" content-id="{{mc.contentId}}">
+
+			<pls-toolbar role="toolbar">
+				<button id="mapping-edit-button" title="{{'MAPPING.LIST.TOOLBAR.MODIFY' | translate}}"
+					ng-click="mc.editMapping()" ng-disabled="mc.isEditDisabled" tabindex="2205">
+					<i class="fa fa-key"></i>
+				</button>
+			</pls-toolbar>
+
+			<div class="main-content">
+				<div ag-grid="mc.gridOptions" class="ag-fresh flex-ag-grid"
+					aria-labelledby="{{mc.contentId}}-title" role="grid" tabindex="2206" ng-focus="mc.onFocus()"></div>
+			</div>
+
+		</pls-side-box>
+	</div>
+
+	<div ng-controller="NodeAttributesController as nac">
+		<pls-side-box box-title="{{'NODE.ATTRIBUTE_LIST.TITLE' | translate}} ({{nac.moc.name}})" content-id="{{nac.contentId}}">
+
+			<div class="main-content">
+				<div ag-grid="nac.gridOptions" class="ag-fresh flex-ag-grid"
+					aria-labelledby="{{nac.contentId}}-title" role="grid" tabindex="2207" ng-focus="nac.onFocus()"></div>
+			</div>
+
+		</pls-side-box>
+	</div>
+
+</div>

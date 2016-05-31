@@ -1,0 +1,29 @@
+<pls-dialog dialog-id="template-creation-dialog" dialog-title="TEMPLATE_CREATION_DIALOG.TITLE">
+	<form name="tc.form" class="sample-form">
+
+		<div class="form-group row">
+			<label for="template-name" class="col-sm-3 form-control-label" translate>TEMPLATE.TEMPLATE_NAME</label>
+			<div class="col-sm-7">
+				<input type="text" id="template-name" name="templateName" class="form-control" autocomplete="off" ng-pattern="/^[\w\d.-]+$/i" required
+						ng-class="{ 'input-error' : tc.isFormError() }" ng-model="tc.template.name"/>
+			</div>
+			<div class="col-sm-2 required-input" ng-show="tc.form.templateName.$error.required" translate>MESSAGE.REQUIRED</div>
+		</div>
+		<div class="row" ng-if="!(tc.isTemplateNameUsed || tc.form.templateName.$error.pattern)">
+			<div class="col-sm-3">&nbsp;</div>
+		</div>
+		<div class="row" ng-if="tc.isTemplateNameUsed">
+			<div class="col-sm-3">&nbsp;</div>
+			<div class="col-sm-7 input-error-message" translate>TEMPLATE.MESSAGE.NAME_TAKEN</div>
+		</div>
+		<div class="row" ng-if="tc.form.templateName.$error.pattern">
+			<div class="col-sm-3">&nbsp;</div>
+			<div class="col-sm-7 input-error-message" translate>TEMPLATE.MESSAGE.NAME_INVALID</div>
+		</div>
+
+		<pls-dialog-buttons-two is-disabled="tc.isFormError"
+				validate-name="DIALOG.OK" reject-name="DIALOG.CANCEL" on-validate="tc.onOk" on-reject="tc.onCancel">
+		</pls-dialog-buttons-two>
+
+	</form>
+</pls-dialog>

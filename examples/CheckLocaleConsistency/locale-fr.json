@@ -1,0 +1,123 @@
+{
+	"MESSAGE":
+	{
+		"LOADING": "Chargement...",
+		"REQUIRED": "requis",
+		"HTTP_ERROR": "Erreur de connexion au serveur: ",
+		"WARNING": "Attention",
+		"ERROR": "Erreur",
+		"UNSAVED_WARNING": "Vous avez des changements non sauvés.",
+		"UNSAVED_WARNING_CONTINUE": "Vous avez des changements non sauvés. Voulez-vous continuer ?"
+	},
+
+	"DIALOG":
+	{
+		"OK": "OK",
+		"CANCEL": "Annuler",
+		"CLOSE": "Fermer",
+		"YES": "Oui",
+		"NO": "Non",
+		"CONFIRM": "Confirmer"
+	},
+
+	"HEADER":
+	{
+		"TEMPLATE_LINK": "Template",
+		"ABOUT_LINK": "À propos",
+		"HELP": "Aide",
+		"LOGOUT" : "Déconnexion",
+		"USERNAME" : "Nom d'usage"
+	},
+
+	"ABOUT":
+	{
+		"TITLE": "À propos",
+		"PRODUCT_NAME": "Nom du produit",
+		"API_VERSION": "Version de l'API"
+	},
+
+	"TRANSLATION":
+	{
+		"TO_OTHER_LANGUAGE": "En anglais"
+	},
+
+	"TEMPLATE":
+	{
+		"TITLE": "Template",
+		"TEMPLATE_NAME": "Nom du template",
+		"UNKNOWN_ID": "(Id inconnu)",
+		"EMPTY_TEMPLATE": "(Template vide)",
+		"SELECT_TEMPLATE": "Sélectionner un template...",
+		"SAVE": "Sauver le template",
+		"DELETE": "Supprimer le template",
+		"EDIT": "Modifier template",
+		"NODE_CONFIGURATION": "Configuration d'un nœud",
+		"NOT_MODIFIED": "(inchangé)",
+		"INVALID_GRAPH": "(graphe invalide)",
+		"UNSAVED": "(non sauvé)",
+		"DELETE_TITLE": "Supprimer le template",
+		"DELETE_MODIFICATIONS_EXIST": "Vos changements seront perdus.",
+		"DELETE_MESSAGE": "Êtes-vous sûr de vouloiir supprimer le template \"{{diagramTitle}}\" ?",
+		"LIST":
+		{
+			"TITLE": "Templates",
+			"HEADER":
+			{
+				"NAME": "Nom"
+			},
+			"TOOLBAR":
+			{
+				"CREATE": "Créer"
+			}
+		},
+		"MESSAGE":
+		{
+			"NAME_TAKEN": "Ce nom de template est déjà utilisé",
+			"NAME_INVALID": "Nom de template invalide",
+			"CREATION_ERROR":
+			{
+				"TITLE": "Erreur de création de template",
+				"MESSAGE": "Le template n'a pas pû être créé : "
+			},
+			"GRAPH_LOADING_ERROR":
+			{
+				"TITLE": "Erreur de chargement du graphe de template",
+				"MESSAGE": "Le graph de template n'a pas pû être chargé : "
+			},
+			"DELETION_ERROR":
+			{
+				"TITLE": "Erreur de suppression de template",
+				"MESSAGE": "Le template n'a pas pû être supprimé : "
+			},
+			"UPDATE_ERROR":
+			{
+				"TITLE": "Erreur de mise à jour de template",
+				"MESSAGE": "Le template n'a pas pû être mis à jour : "
+			},
+			"SAVING_ERROR":
+			{
+				"TITLE": "Erreur de sauvegarde du template",
+				"MESSAGE": "Le template n'a pas pû être sauvé : "
+			},
+			"SAVING_SUCCESS":
+			{
+				"TITLE": "Template sauvé",
+				"MESSAGE": "Le template a été sauvé"
+			}
+		}
+	},
+
+	"UPLOAD":
+	{
+		"INVALID":
+		{
+			"TITLE": "Type de fichier invalide",
+			"MESSAGE": "Le fichier doit être d'un des types suivants : "
+		},
+		"TOO_BIG":
+		{
+			"TITLE": "Fichier trop gros",
+			"MESSAGE": "Le fichier doit être plus petit que "
+		}
+	}
+}

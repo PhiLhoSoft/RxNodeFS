@@ -1,0 +1,123 @@
+{
+	"MESSAGE":
+	{
+		"LOADING": "Loading...",
+		"REQUIRED": "required",
+		"HTTP_ERROR": "Error when connecting to server: ",
+		"WARNING": "Warning",
+		"ERROR": "Error",
+		"UNSAVED_WARNING": "You have unsaved changes.",
+		"UNSAVED_WARNING_CONTINUE": "You have unsaved changes. Do you want to continue?"
+	},
+
+	"DIALOG":
+	{
+		"OK": "OK",
+		"CANCEL": "Cancel",
+		"CLOSE": "Close",
+		"YES": "Yes",
+		"NO": "No",
+		"CONFIRM": "Confirm"
+	},
+
+	"HEADER":
+	{
+		"TEMPLATE_LINK": "Template",
+		"ABOUT_LINK": "About",
+		"HELP": "Help",
+		"LOGOUT" : "Log Out",
+		"USERNAME" : "User name"
+	},
+
+	"ABOUT":
+	{
+		"TITLE": "About",
+		"PRODUCT_NAME": "Product name",
+		"API_VERSION": "API version"
+	},
+
+	"TRANSLATION":
+	{
+		"TO_OTHER_LANGUAGE": "auf Deutsch"
+	},
+
+	"TEMPLATE":
+	{
+		"TITLE": "Template",
+		"TEMPLATE_NAME": "Template name",
+		"UNKNOWN_ID": "(Unknown id)",
+		"EMPTY_TEMPLATE": "(Empty template)",
+		"SELECT_TEMPLATE": "Select a template...",
+		"SAVE": "Save template",
+		"DELETE": "Delete template",
+		"EDIT": "Edit template",
+		"NODE_CONFIGURATION": "Node configuration",
+		"NOT_MODIFIED": "(not modified)",
+		"INVALID_GRAPH": "(invalid graph)",
+		"UNSAVED": "(not saved)",
+		"DELETE_TITLE": "Delete Template",
+		"DELETE_MODIFICATIONS_EXIST": "Your modifications will be lost.",
+		"DELETE_MESSAGE": "Are you sure you want to remove \"{{diagramTitle}}\" template?",
+		"LIST":
+		{
+			"TITLE": "Templates",
+			"HEADER":
+			{
+				"NAME": "Name"
+			},
+			"TOOLBAR":
+			{
+				"CREATE": "Create"
+			}
+		},
+		"MESSAGE":
+		{
+			"NAME_TAKEN": "This template name already exists",
+			"NAME_INVALID": "Invalid template name",
+			"CREATION_ERROR":
+			{
+				"TITLE": "Template Creation Error",
+				"MESSAGE": "Failed to create template: "
+			},
+			"GRAPH_LOADING_ERROR":
+			{
+				"TITLE": "Template Graph Loading Error",
+				"MESSAGE": "Failed to load template graph: "
+			},
+			"DELETION_ERROR":
+			{
+				"TITLE": "Template Delete Error",
+				"MESSAGE": "Failed to delete template: "
+			},
+			"UPDATE_ERROR":
+			{
+				"TITLE": "Template Update Error",
+				"MESSAGE": "Failed to update template: "
+			},
+			"SAVING_ERROR":
+			{
+				"TITLE": "Template Save Error",
+				"MESSAGE": "Failed to save template: "
+			},
+			"SAVING_SUCCESS":
+			{
+				"TITLE": "Template Save Success",
+				"MESSAGE": "Template successfully saved"
+			}
+		}
+	},
+
+	"UPLOAD":
+	{
+		"INVALID":
+		{
+			"TITLE": "Invalid File Type",
+			"MESSAGE": "File must be one of the following types: "
+		},
+		"TOO_BIG":
+		{
+			"TITLE": "File Too Big",
+			"MESSAGE": "File must be smaller than "
+		}
+	}
+}
