@@ -3,48 +3,17 @@
 
 /* global require, __dirname */// Appeases ESLint
 
-// ==================================================
-// Configuration area: change settings here
 
-var encoding = 'utf8'; // 'ascii' or 'utf8' in pure Node
+const _ = require('lodash');
+const rxfs = require('../../lib/RxNodeFS');
 
-// This file is supposed to be the most up-to-date,
-// it is the one used to check usage in the code, and is the reference for comparisons.
-var referenceFile = 'locale-en.json';
+const options = require('./Options');
 
-var otherFiles =
-[
-	'locale-de.json',
-	'locale-fr.json',
-	// List other languages here
-];
-// I could list automatically all files, with glob to match and another to ignore.
-// Overkill, simpler to be explicit... Unless you have LOT of locales...
-
-// Path to the source files where we check all keys are used, and none are not defined...
-// Assumes the HTML templates are in the same path. Otherwise, might need some changes below.
-var sourcePath = '../../';
-var excludedDirectories = [ 'node_modules', '.git' ];
-
-// End of configuration area: don't touch code below (unless you fix something!)
-// ==================================================
-
-
-var _ = require('lodash');
-var rxfs = require('../../lib/RxNodeFS.js');
-
-
-var sourceOptions =
+const sourceOptions =
 {
 	recurse: true,
-	filterDirectory: function (d, i)
-	{
-		return _.some(excludedDirectories, function __isThisFile(f) { return d.name !== f; });
-	},
-	filter: function (f, i)
-	{
-		return f.name.endsWith('.html') || f.name.endsWith('.js');
-	},
+	filterDirectory: (d) => _.some(options.excludedDirectories, (f) => d.name !== f ),
+	filter: (f) => f.name.endsWith('.html') || f.name.endsWith('.js'),
 };
 
 
@@ -54,12 +23,12 @@ function listPaths(object)
 	// push the key if its value is a string,
 	// otherwise list the keys (simple and compound) of the value
 	// and push each of these keys, prefixed by the current key.
-	var result = _.reduce(object, function __processEntry(r, value, key)
+	const result = _.reduce(object, (r, value, key) =>
 	{
 		if (_.isObject(value))
 		{
-			var paths = listPaths(value);
-			_.forEach(paths, function (p) { r.push(key + '.' + p); });
+			const paths = listPaths(value);
+			_.forEach(paths, (p) => { r.push(key + '.' + p); });
 		}
 		else
 		{
@@ -72,17 +41,18 @@ function listPaths(object)
 
 function readLocalizationFiles(done)
 {
-	var jsonByFileName = {};
-	var allFiles = _.clone(otherFiles);
+	const jsonByFileName = {};
+	const allFiles = _.clone(options.otherFiles);
 	// Add the reference file
-	allFiles.unshift(referenceFile);
+	allFiles.unshift(options.referenceFile);
 
-	rxfs.readFiles(__dirname, { fileNames: allFiles, encoding: encoding }).subscribe(
-		function __onNext(result)
+	rxfs.readFiles(__dirname, { fileNames: allFiles, encoding: options.encoding }).subscribe(
+		(result) =>
 		{
+			let localization;
 			try
 			{
-				var localization = JSON.parse(result.content);
+				localization = JSON.parse(result.content);
 			}
 			catch (e)
 			{
@@ -90,40 +60,37 @@ function readLocalizationFiles(done)
 			}
 			jsonByFileName[result.name] = localization;
 		},
-		function __onError(err) { done(err); },
-		function __onComplete() { done(undefined, jsonByFileName); }
+		(err) => { done(err); },
+		() => { done(undefined, jsonByFileName); }
 	);
 }
 
-readLocalizationFiles(function __readAllJsonFiles(err, jsonByFileName)
+readLocalizationFiles((err, jsonByFileName) =>
 {
 	if (err)
 	{
 		throw new Error('Error while reading localization files\n' + err);
 	}
 
-	var referenceList = listPaths(jsonByFileName[referenceFile]);
-	var countByLocalizationKey = _.reduce(referenceList, function __asKey(m, p)
+	const referenceList = listPaths(jsonByFileName[options.referenceFile]);
+	const countByLocalizationKey = _.reduce(referenceList, (m, p) =>
 	{
 		m[p] = 0;
 		return m;
 	}, {});
 
-	delete jsonByFileName[referenceFile];
-	var otherLists = _.mapValues(jsonByFileName, function __toList(json, fileName)
-	{
-		return listPaths(json);
-	});
+	delete jsonByFileName[options.referenceFile];
+	const otherLists = _.mapValues(jsonByFileName, listPaths);
 
-	console.log('Reference file is', referenceFile);
-	_.forEach(otherLists, function __compare(list, fileName)
+	console.log('Reference file is', options.referenceFile);
+	_.forEach(otherLists, (list, fileName) =>
 	{
 		if (!_.isEqual(list, referenceList))
 		{
-			console.log('Different list between', referenceFile, 'and', fileName);
+			console.log('Different list between', options.referenceFile, 'and', fileName);
 			// Differences are empty if there are only moved keys (not in the same order). Arrays are still different.
-			console.log('In ' + referenceFile + ', not in ' + fileName + '', _.difference(referenceList, list));
-			console.log('In ' + fileName + ', not in ' + referenceFile + '', _.difference(list, referenceList));
+			console.log('In ' + options.referenceFile + ', not in ' + fileName + '', _.difference(referenceList, list));
+			console.log('In ' + fileName + ', not in ' + options.referenceFile + '', _.difference(list, referenceList));
 		}
 		else
 		{
@@ -132,11 +99,11 @@ readLocalizationFiles(function __readAllJsonFiles(err, jsonByFileName)
 	});
 
 	// Process all source files
-	var results = [];
-	var errors = [];
-	var files = [];
-	rxfs.readFiles(sourcePath, sourceOptions).subscribe(
-		function __onNext(file)
+	const results = [];
+	const errors = [];
+	const files = [];
+	rxfs.readFiles(options.sourcePath, sourceOptions).subscribe(
+		(file) =>
 		{
 			// Search in source files (JS and HTML) all localized strings
 			if (!file.content)
@@ -145,17 +112,17 @@ readLocalizationFiles(function __readAllJsonFiles(err, jsonByFileName)
 				return;
 			}
 			files.push(file.name);
-			var matches = file.content.match(/["'>]([A-Z_]+(?:\.[A-Z0-9_]+)+)["'<]/g);
+			let matches = file.content.match(/["'>]([A-Z_]+(?:\.[A-Z0-9_]+)+)["'<]/g);
 			if (matches === null)
 			{
 				// No localization there
 				return;
 			}
-			matches = _.map(matches, function __cleanUp(m)
+			matches = _.map(matches, (m) =>
 			{
 				return m.replace(/["'<>]/g, '');
 			});
-			_.forEach(matches, function __count(localeKey)
+			_.forEach(matches, (localeKey) =>
 			{
 				if (countByLocalizationKey[localeKey] === undefined)
 				{
@@ -167,19 +134,15 @@ readLocalizationFiles(function __readAllJsonFiles(err, jsonByFileName)
 				}
 			});
 		},
-		function __onError(err) { errors.push(err); },
-		function __onComplete() { results.push('Check finished'); printResults(); }
+		(err) => { errors.push(err); },
+		() => { results.push('Check finished'); printResults(); }
 	);
 
 	function printResults()
 	{
 		console.log('Errors\n', errors);
 		// console.log('Results\n', countByLocalizationKey);
-		var orphans = _.pickBy(countByLocalizationKey,
-			function __ifZero(count, key)
-			{
-				return count === 0;
-			});
+		const orphans = _.pickBy(countByLocalizationKey, (count) => count === 0);
 		console.log('Orphans', orphans);
 		// console.log('Using files\n', files);
 	}

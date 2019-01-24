@@ -1,20 +1,15 @@
 {
-	"name": "RxNodeFS",
-	"version": "0.2.1",
+	"name": "rx-node-fs",
+	"version": "0.3.0",
 	"description": "Library to wrap Node.js' FS library (filesystem) in RxJS' Observables",
 	"author": "PhiLho <PhiLho(a)GMX.net>",
 	"license": "Zlib",
-	"private": true,
+	"private": false,
 	"main": "lib/RxNodeFS.js",
-	"dependencies":
-	{
-		"lodash": "~4.13.0",
-		"rx": "~4.1.0"
+	"dependencies": {
+		"lodash": "~4.17.11",
+		"rxjs": "~6.3.3"
 	},
-	"devDependencies":
-	{
-	},
-	"scripts":
-	{
-	}
+	"devDependencies": {},
+	"scripts": {}
 }
