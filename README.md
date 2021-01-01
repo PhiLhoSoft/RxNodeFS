@@ -21,9 +21,12 @@ You can compile and run the test code and examples.
 
 ```bash
 $ npm run build:test
-$ node test-dist/test/rx-node-fs.spec.js > test-dist/TestData.txt
+$ node run start:test
+$ npm run build:examples
+$ node run start:examples
 ```
 
+That creates JS files in test-dist, and result files as TestData.txt and ExampleData.txt.
 
 ## History
 

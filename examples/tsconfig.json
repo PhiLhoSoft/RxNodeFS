@@ -3,7 +3,7 @@
 	"files":
 	[
 		"index.ts",
-		"../polyfills.js"
+		"../polyfills.ts"
 	],
 	"compilerOptions":
 	{

@@ -3,7 +3,7 @@
 	"files":
 	[
 		".eslintrc.cjs",
-		"polyfills.js"
+		"polyfills.ts"
 	],
 	"include":
 	[

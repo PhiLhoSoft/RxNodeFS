@@ -2,7 +2,7 @@
 	"extends": "../tsconfig.common.json",
 	"files":
 	[
-		"../polyfills.js",
+		"../polyfills.ts",
 	],
 	"include":
 	[

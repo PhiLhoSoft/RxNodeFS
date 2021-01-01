@@ -15,7 +15,13 @@
 	"homepage": "https://PhiLhoSoft.github.io/",
 	"license": "Zlib",
 	"private": false,
-	"main": "lib/RxNodeFS.js",
+	"main": "dist/rx-node-fs.js",
+	"files": [
+		"/dist",
+		"/lib",
+		"/README.md",
+		"/LICENSE"
+	],
 	"type": "module",
 	"dependencies": {
 		"core-js": "^3.7.0",
