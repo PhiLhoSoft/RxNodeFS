@@ -7,15 +7,15 @@
 	"publisher": "PhiLhoSoft",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/PhiLhoSoft/console-master.git"
+		"url": "https://github.com/PhiLhoSoft/RxNodeFS.git"
 	},
 	"bugs": {
-		"url": "https://github.com/PhiLhoSoft/console-master/issues"
+		"url": "https://github.com/PhiLhoSoft/RxNodeFS/issues"
 	},
 	"homepage": "https://PhiLhoSoft.github.io/",
 	"license": "Zlib",
 	"private": false,
-	"main": "dist/rx-node-fs.js",
+	"main": "dist/lib/rx-node-fs.js",
 	"files": [
 		"/dist",
 		"/lib",
