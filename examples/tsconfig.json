@@ -1,0 +1,20 @@
+{
+	"extends": "../tsconfig.common.json",
+	"files":
+	[
+		"index.ts",
+		"../polyfills.js"
+	],
+	"compilerOptions":
+	{
+		"baseUrl": ".",
+		"paths":
+		{
+			"rx-node-fs":
+			[
+				"../lib/rx-node-fs"
+			],
+		},
+		"outDir": "../test-dist",
+	}
+}

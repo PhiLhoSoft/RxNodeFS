@@ -1,0 +1,28 @@
+{
+	"compilerOptions":
+	{
+		"module": "ESNext",
+		"lib": [ "es2018", "dom" ],
+		"target": "ES6",
+
+		"moduleResolution": "Node",
+		"resolveJsonModule": true,
+
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"stripInternal": true,
+		"noEmitHelpers": true,
+		"importHelpers": true,
+
+		"strictNullChecks": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"strictPropertyInitialization": false,
+		"strictFunctionTypes": false,
+	}
+}

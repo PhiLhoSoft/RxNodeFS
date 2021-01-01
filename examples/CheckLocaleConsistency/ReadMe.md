@@ -1,31 +1,32 @@
-# Check consistency
+# Check Consistency
 
 This is a Node.js program to check the consistency of the locale files used by ngTranslate.
 
 It is run as:
 ```bash
-> node CheckConsistency.js
+> node check-consistency.js
 ```
-It depends on the `RxNodeFS.js` module in the same directory. There is also a `TestRxNodeFS.js` which uses the API of the former file to list files and read some of them, with visual output (no asserts there).
+It depends on the `rx-node-fs.ts` module in the `lib` directory.
 
 At the start of the script there is a little section where you can adjust the parameters: name of the reference file (see below), names of the other localization files, path to the application source files.
 
-`CheckConsistency.js` reads the reference translation file (defaults on `locale-en.json` in the same directory) and the other translation files (currently only `locale-de.json`).
+`check-consistency.ts` reads the reference translation file (defaults on `locale-en.json` in the same directory) and the other translation files (currently only `locale-de.json` and `locale-fr.json`).
 It transforms the Json in them to a list of translation keys, like `COLLECTION_INFORMATION.MESSAGE.ERROR.DELETE_MESSAGE`.
 Then it compares each translation file to the reference file.
 If the lists differ (in content and / or order), it reports it:
 ```bash
-> node CheckConsistency.js
+> node check-consistency.js
 Reference file is locale-en.json
 Different list between locale-en.json and locale-de.json
 In locale-en.json, not in locale-de.json []
 In locale-de.json, not in locale-en.json []
+OK for locale-fr.json
 ```
 Here, a section has been moved, so it reports no differences, but reports the lists are not identical. The moved part(s) can be seen with a diff tool like WinMerge.
 
 If there is a Json syntax error (eg. a trailing comma before the end of a map), we get:
 ```bash
-> node CheckConsistency.js
+> node check-consistency.js
 C:\some\path\rx\dist\rx.js:77
     throw e;
     ^
@@ -45,6 +46,7 @@ In locale-en.json, not in locale-de.json [ 'MOC.MESSAGE.GET_ERROR.TITLE',
   'MOC.MESSAGE.GET_ERROR.MESSAGE',
   'PERFORMANCE_INDICATOR.MESSAGE.ERROR.LOAD_GRANULARITIES_MESSAGE' ]
 In locale-de.json, not in locale-en.json [ 'COLLECTION_JOB_EDITING_DIALOG.ERROR_DELETE_COLLECTION_JOB' ]
+OK for locale-fr.json
 ```
 
 After this check, the program will check the reference file (`locale-en.json`) against the application source files (JS and HTML).
@@ -78,7 +80,7 @@ Orphans { 'MESSAGE.ERROR': 0,
   'UPLOAD.INVALID.MESSAGE': 0,
   'UPLOAD.TOO_BIG.TITLE': 0,
   'UPLOAD.TOO_BIG.MESSAGE': 0 }
-  ```
+```
 
 As you can see, there is a key missing in the EN file that is reported as used and not translated, and a `MOC.ATTRIBUTE.NAME` that is missing in both files.
 These errors _must_ be fixed, otherwise the application will show the keys instead of the translations.
@@ -86,8 +88,3 @@ These errors _must_ be fixed, otherwise the application will show the keys inste
 There is also a list of "orphans": keys defined in the reference file, but not used in the code. For some, like additional units or granularities, it is OK for consistency (might be used later), for others like unused error message, it is better to suppress them as they add a cost of maintenance. Or, in the case of `TEMPLATE_INSTANCE.LIST.HEADER.NAME`, the code was using `TEMPLATE.LIST.HEADER.NAME` which should be fixed (even if the translations are the same).
 
 This tool can be run regularly after each important change, to ensure of the quality of the translations. The output is a bit crude but already useful.
-
-
-
-
-

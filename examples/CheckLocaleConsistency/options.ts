@@ -1,7 +1,7 @@
 // ==================================================
 // Configuration of CheckLocaleConsistency: change settings here
 
-const options =
+export const options =
 {
 	encoding: 'utf8', // 'ascii' or 'utf8' in pure Node
 
@@ -23,5 +23,3 @@ const options =
 	sourcePath: '../../',
 	excludedDirectories: [ 'node_modules', '.git' ],
 };
-
-module.exports = options;

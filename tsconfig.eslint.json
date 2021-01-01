@@ -1,0 +1,28 @@
+{
+	"extends": "./tsconfig.common.json",
+	"files":
+	[
+		".eslintrc.cjs",
+		"polyfills.js"
+	],
+	"include":
+	[
+		"**/*.ts",
+		"**/*.spec.ts",
+		"**/*.d.ts",
+	],
+	"exclude":
+	[
+		"node_modules/**/*",
+		"test/sample/**/*",
+		"dist/**/*",
+		"test-dist/**/*",
+	],
+	"compilerOptions":
+	{
+		"types":
+		[
+			"node",
+		],
+	},
+}
