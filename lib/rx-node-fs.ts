@@ -6,6 +6,8 @@
 import * as fs from 'fs';
 import _ from 'lodash';
 import * as nodePath from 'path';
+// In Node.js, we need to be explicit, it cannot do such imports from a directory.
+// TS understands…
 import { EMPTY, from, Observable } from 'rxjs/index.js';
 import { expand, filter, map, mergeMap } from 'rxjs/operators/index.js';
 
@@ -42,6 +44,37 @@ export function readFile(file: RxFsPath, encoding?: string): Observable<string |
 					const fileContent = _.isString(fileContentOrBuffer) ? fileContentOrBuffer : fileContentOrBuffer.toString();
 					const result = processResult<string>(file, fileContent, 'content');
 					observer.next(result);
+					observer.complete();
+				},
+			);
+		},
+	);
+}
+
+/**
+ * Writes a file at given path with the given data, returning an empty observable when done.
+ *
+ * @param file - path to the file to write, or an object with a 'fullPath' key.
+ * @param data - the string to write at the given path (or a `Buffer`).
+ * @param options - the writing options (see [fs.writeFile](https://nodejs.org/api/fs.html#fs_fs_writefile_file_data_options_callback)).
+ * @return an empty observable.
+ */
+export function writeFile(file: RxFsPath, data: string | Buffer, options: fs.WriteFileOptions | null = null): Observable<void>
+{
+	const filePath = toPath(file);
+	return new Observable(
+		(observer) =>
+		{
+			fs.writeFile(filePath, data, options,
+				(error) =>
+				{
+					if (error)
+					{
+						observer.error(error);
+						return;
+					}
+
+					observer.next(undefined);
 					observer.complete();
 				},
 			);
@@ -104,7 +137,7 @@ export function readDirectory(path: string, options: RxFsReadOptions = {}): Obse
 }
 
 /**
- * Reads the content of the list of files at given path, with given options.
+ * Reads the content of the files at given path, with given options.
  *
  * @param path - the root path
  * @param [options] - the options

@@ -17,6 +17,7 @@
 	"private": false,
 	"main": "dist/lib/rx-node-fs.js",
 	"files": [
+		"/index.ts",
 		"/dist",
 		"/lib",
 		"/README.md",
@@ -48,7 +49,7 @@
 		"build:examples": "tsc -p examples/tsconfig.json",
 		"start:examples": "node test-dist/examples/CheckLocaleConsistency/check-consistency.js > test-dist/ExampleData.txt",
 		"build:test": "tsc -p test/tsconfig.json",
-		"start:test": "node test-dist/test/rx-node-fs.spec.js > test-dist/TestData.txt",
+		"start:test": "node test-dist/test/rx-node-fs-test.js",
 		"lint": "eslint .",
 		"test": "npm run lint"
 	}

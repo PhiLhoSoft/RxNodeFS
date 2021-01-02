@@ -263,6 +263,14 @@ module.exports =
 				allowNullish: true,
 			},
 		],
+		// Disallow unused variables
+		'@typescript-eslint/no-unused-vars': [ 'warn',
+			{
+				varsIgnorePattern: '^_', // We can prefix a variable with _ to ignore it (probably temporarily)
+				args: 'none',
+				ignoreRestSiblings: true,
+			},
+		],
 
 		// Other settings
 

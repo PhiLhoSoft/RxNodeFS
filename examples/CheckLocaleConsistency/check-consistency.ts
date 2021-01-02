@@ -63,7 +63,7 @@ function readLocalizationFiles(done: (errorMessage: string | undefined, result?:
 				}
 				catch (e)
 				{
-					return done(`While parsing Json for ${result.fullPath}:${'\n'}${e}`);
+					return done(`While parsing Json for ${result.fullPath}:\n${e}`);
 				}
 				jsonByFileName[result.name] = localization;
 			},
