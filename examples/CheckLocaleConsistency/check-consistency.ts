@@ -19,7 +19,7 @@ const sourceOptions =
 	filter: (f: RxFsFile) => f.name.endsWith('.html') || f.name.endsWith('.js'),
 };
 
-function listPaths(object: AnyObject)
+function listPaths(object: AnyObject): string[]
 {
 	// For each key of the object,
 	// push the key if its value is a string,

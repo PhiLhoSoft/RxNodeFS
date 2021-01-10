@@ -238,7 +238,7 @@ function readDirectoryDeep(path: string, options: RxFsReadOptions): Observable<R
 
 function createFilter(options: RxFsReadOptions): FilePredicate
 {
-	let filter: FilePredicate = _.identity; // eslint-disable-line
+	let filter: FilePredicate = () => true; // No filter
 	if (_.isArray(options.fileNames))
 	{
 		filter = (file: RxFsFile) =>

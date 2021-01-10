@@ -1,9 +1,9 @@
 {
-	"name": "rx-node-fs",
+	"name": "@philhosoft/rx-node-fs",
 	"displayName": "RxNodeFS",
 	"version": "1.1.0",
 	"description": "Library to wrap Node.js' FS library (filesystem) in RxJS' Observables",
-	"author": "PhiLho <PhiLho(a)GMX.net>",
+	"author": "PhiLho",
 	"publisher": "PhiLhoSoft",
 	"repository": {
 		"type": "git",
@@ -15,13 +15,14 @@
 	"homepage": "https://PhiLhoSoft.github.io/",
 	"license": "Zlib",
 	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
 	"main": "dist/lib/rx-node-fs.js",
 	"files": [
 		"/index.ts",
 		"/dist",
-		"/lib",
-		"/README.md",
-		"/LICENSE"
+		"/lib"
 	],
 	"type": "module",
 	"dependencies": {
@@ -31,6 +32,7 @@
 		"tslib": "^2.0.3"
 	},
 	"devDependencies": {
+		"@philhosoft/ts-eslintrc": "^1.0.1",
 		"@types/core-js": "^2.5.4",
 		"@types/glob": "^7.1.3",
 		"@types/jest": "^26.0.19",
