@@ -43,5 +43,5 @@ export type RxFsReadOptions =
 	 */
 	filterDirectory?: FilePredicate;
 	/** Encoding used to read the files. Defaults to 'utf8'. */
-	encoding?: string;
+	encoding?: BufferEncoding;
 };

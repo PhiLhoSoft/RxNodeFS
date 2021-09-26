@@ -3,7 +3,7 @@
 
 export const options =
 {
-	encoding: 'utf8', // 'ascii' or 'utf8' in pure Node
+	encoding: 'utf8' as BufferEncoding, // 'ascii' or 'utf8' in pure Node
 
 	// This file is supposed to be the most up-to-date,
 	// it is the one used to check usage in the code, and is the reference for comparisons.

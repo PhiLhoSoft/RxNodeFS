@@ -6,10 +6,8 @@
 import * as fs from 'fs';
 import _ from 'lodash';
 import * as nodePath from 'path';
-// In Node.js, we need to be explicit, it cannot do such imports from a directory.
-// TS understands…
-import { EMPTY, from, Observable } from 'rxjs/index.js';
-import { expand, filter, map, mergeMap } from 'rxjs/operators/index.js';
+import { EMPTY, from, Observable, Subscriber } from 'rxjs';
+import { expand, filter, map, mergeMap } from 'rxjs/operators';
 
 import { FilePredicate, RxFsFile, RxFsPath, RxFsReadOptions } from './model';
 
@@ -21,7 +19,7 @@ import { FilePredicate, RxFsFile, RxFsPath, RxFsReadOptions } from './model';
  * @return an observable wrapping either the content of the file if 'file' is a path,
  *         or the 'file' object augmented with the content under the 'content' key.
  */
-export function readFile(file: RxFsPath, encoding?: string): Observable<string | RxFsFile>
+export function readFile(file: RxFsPath, encoding?: BufferEncoding): Observable<string | RxFsFile>
 {
 	const filePath = toPath(file);
 	if (encoding === undefined) // If null, keep it as is
@@ -30,10 +28,10 @@ export function readFile(file: RxFsPath, encoding?: string): Observable<string |
 	}
 
 	return new Observable(
-		(observer) =>
+		(observer: Subscriber<string | RxFsFile>) =>
 		{
-			fs.readFile(filePath, encoding,
-				(error, fileContentOrBuffer) =>
+			fs.readFile(filePath, encoding!,
+				(error: NodeJS.ErrnoException | null, fileContentOrBuffer: string | Buffer) =>
 				{
 					if (error)
 					{
@@ -41,7 +39,7 @@ export function readFile(file: RxFsPath, encoding?: string): Observable<string |
 						return;
 					}
 
-					const fileContent = _.isString(fileContentOrBuffer) ? fileContentOrBuffer : fileContentOrBuffer.toString();
+					const fileContent: string = _.isString(fileContentOrBuffer) ? fileContentOrBuffer : fileContentOrBuffer.toString();
 					const result = processResult<string>(file, fileContent, 'content');
 					observer.next(result);
 					observer.complete();
@@ -63,10 +61,10 @@ export function writeFile(file: RxFsPath, data: string | Buffer, options: fs.Wri
 {
 	const filePath = toPath(file);
 	return new Observable(
-		(observer) =>
+		(observer: Subscriber<void>) =>
 		{
 			fs.writeFile(filePath, data, options,
-				(error) =>
+				(error: NodeJS.ErrnoException | null) =>
 				{
 					if (error)
 					{
@@ -92,10 +90,10 @@ export function writeFile(file: RxFsPath, data: string | Buffer, options: fs.Wri
 export function readStat(file: RxFsPath): Observable<fs.Stats | RxFsFile>
 {
 	return new Observable(
-		(observer) =>
+		(observer: Subscriber<RxFsFile | fs.Stats>) =>
 		{
 			const filePath = toPath(file);
-			fs.stat(filePath, (error, stat) =>
+			fs.stat(filePath, (error: NodeJS.ErrnoException | null, stat: fs.Stats) =>
 			{
 				if (error)
 				{
@@ -167,9 +165,9 @@ function readDirectoryFlat(path: string, options: RxFsReadOptions): Observable<s
 {
 	const fileFilter = createFilter(options);
 	return new Observable(
-		(observer) =>
+		(observer: Subscriber<RxFsFile | string>) =>
 		{
-			fs.readdir(path, (error, fileNames) =>
+			fs.readdir(path, (error: NodeJS.ErrnoException | null, fileNames: readonly string[]) =>
 			{
 				if (error)
 				{

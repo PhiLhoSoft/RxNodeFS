@@ -1,8 +1,10 @@
-# RxNodeFS v. 1.1.0
+# RxNodeFS
+
+[![Version](https://img.shields.io/npm/v/@philhosoft/rx-node-fs)](https://www.npmjs.com/package/@philhosoft/rx-node-fs)
 
 Library to wrap Node.js' FS library (filesystem) in RxJS' Observables.
 Currently only wrap directory reading (with optional recursion), file reading and writing.
-The read data is provided as a stream of file information, as it consumes less memory:
+The read data is provided as a stream of file information, rather as a stream delivering a single array, because it consumes less memory:
 we can select and keep the useful information and throw away the remainder.
 
 ## Installation

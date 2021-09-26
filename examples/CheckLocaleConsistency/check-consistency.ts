@@ -3,6 +3,8 @@
 
 import _ from 'lodash';
 
+// In Node.js, we need to explicitly import the .js files, it cannot do such imports from a directory.
+// TS understands…
 import { RxFsFile } from '../../lib/model.js';
 import { readFiles } from '../../lib/rx-node-fs.js';
 import { options } from './options.js';
