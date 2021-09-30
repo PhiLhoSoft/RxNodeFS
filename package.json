@@ -1,7 +1,7 @@
 {
 	"name": "@philhosoft/rx-node-fs",
 	"displayName": "RxNodeFS",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"description": "Library to wrap Node.js' FS library (filesystem) in RxJS' Observables",
 	"author": "PhiLho",
 	"publisher": "PhiLhoSoft",
