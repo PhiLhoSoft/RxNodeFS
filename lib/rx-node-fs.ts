@@ -16,10 +16,12 @@ import { FilePredicate, RxFsFile, RxFsPath, RxFsReadOptions } from './model';
  *
  * @param file - path to the file to read, or an object with a 'fullPath' key.
  * @param encoding - if null or string, use that. If undefined, defaults to 'utf8'.
- * @return an observable wrapping either the content of the file if 'file' is a path,
- *         or the 'file' object augmented with the content under the 'content' key.
+ * @return an observable wrapping either the content of the file if 'file' is a path (string),
+ *         or the 'file' object (RxFsFile) augmented with the content under the 'content' key.
  */
-export function readFile(file: RxFsPath, encoding?: BufferEncoding): Observable<string | RxFsFile>
+function readFile(file: string, encoding?: BufferEncoding): Observable<string>;
+function readFile(file: RxFsFile, encoding?: BufferEncoding): Observable<RxFsFile>;
+function readFile(file: RxFsPath, encoding?: BufferEncoding): Observable<string | RxFsFile>
 {
 	const filePath = toPath(file);
 	if (encoding === undefined) // If null, keep it as is
@@ -87,7 +89,9 @@ export function writeFile(file: RxFsPath, data: string | Buffer, options: fs.Wri
  * @return an observable wrapping either the stat information of the file if 'file' is a path,
  *         or the 'file' object augmented with the stat information under the 'stat' key.
  */
-export function readStat(file: RxFsPath): Observable<fs.Stats | RxFsFile>
+function readStat(file: string): Observable<fs.Stats>;
+function readStat(file: RxFsFile): Observable<RxFsFile>;
+function readStat(file: RxFsPath): Observable<fs.Stats | RxFsFile>
 {
 	return new Observable(
 		(observer: Subscriber<RxFsFile | fs.Stats>) =>
@@ -151,7 +155,7 @@ export function readFiles(path: string, options: RxFsReadOptions = {}): Observab
 
 	return (readDirectory(path, options) as Observable<RxFsFile>)
 		.pipe(
-			mergeMap((file) => readFile(file, options.encoding) as Observable<RxFsFile>),
+			mergeMap((file) => readFile(file, options.encoding)),
 		);
 }
 
@@ -183,7 +187,7 @@ function readDirectoryFlat(path: string, options: RxFsReadOptions): Observable<s
 				if (options.readStat || options.onlyFiles)
 				{
 					options.asObject = true;
-					files$ = files$.pipe(mergeMap(readStat)) as Observable<RxFsFile>;
+					files$ = files$.pipe(mergeMap(readStat));
 				}
 
 				files$
@@ -280,8 +284,8 @@ function toPath(file: RxFsPath): string
 }
 
 /**
- * Given a file (string path or object), a value (the result, any type) and a key:
- * if the file is just a path, return the value itself.
+ * Given a file (string path or object), a value (the result, any type) and a key of the object, if any:
+ * if the file is just a path, it just returns the value itself.
  * Otherwise, if it is an object, adds the value to the object under the given key and returns that.
  */
 function processResult<T>(file: RxFsPath, value: T, key: keyof RxFsFile): T | RxFsFile
@@ -294,3 +298,5 @@ function processResult<T>(file: RxFsPath, value: T, key: keyof RxFsFile): T | Rx
 	file[key] = value as never; // string or fs.Stats, likely
 	return file;
 }
+
+export { readFile, readStat };
